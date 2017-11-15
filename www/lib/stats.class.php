@@ -1142,8 +1142,7 @@
 	  		global $MANI_CONFIG;
 	  		$media_type  = "TV";
 	  		$media_dir   = "TVShows";
-        	$email       = $data->email;
-	  		$cust_dir    = $MANI_CONFIG['libraries'].'/'.$email.'/'.$media_dir;
+	  		$cust_dir    = $MANI_CONFIG['libraries'].'/'.$data->username.'/'.$media_dir;
 			$res = array();
 			foreach(scandir($cust_dir) as $dir) {
 				if (!in_array($dir, array(".", ".."))) {
@@ -1167,8 +1166,7 @@
 	  		global $MANI_CONFIG;
 	  		$media_type  = "MOVIE";
 	  		$media_dir   = "Movies";
-        	$email       = $data->email;
-	  		$cust_dir    = $MANI_CONFIG['libraries'].'/'.$email.'/'.$media_dir;
+	  		$cust_dir    = $MANI_CONFIG['libraries'].'/'.$data->username.'/'.$media_dir;
 			$res = array();
 			foreach(scandir($cust_dir) as $dir) {
 				if (!in_array($dir, array(".", ".."))) {
