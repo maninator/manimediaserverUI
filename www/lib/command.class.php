@@ -77,7 +77,8 @@ class Command
 					"params" => array(
 						"email" 	=> $user_data["email"],
 						"username" 	=> $user_data["username"],
-						"password" 	=> $user_data["password"]
+						"password" 	=> $user_data["password"],
+						"categories"=> array("Movies-All","TVShows-All")
 					)
 				)
 			)

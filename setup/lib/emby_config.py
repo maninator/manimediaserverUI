@@ -292,7 +292,7 @@ class EmbyHandle(object):
             res = {"status":True, "result":result}
         return res
 
-    def get_account_media_locations(self, username):
+    def get_account_media_locations(self, username, additional_categories=[]):
         locations = self.get_media_locations();
         folders = []
         if locations and locations["status"]:
@@ -301,6 +301,9 @@ class EmbyHandle(object):
                 name = x["Name"]
                 if username in name.split("-"):
                     folders.append(x["Id"])
+                for cat in additional_categories:
+                    if cat == name:
+                        folders.append(x["Id"])
         return folders
 
     def get_current_account_config(self, user_info):
@@ -326,13 +329,13 @@ class EmbyHandle(object):
             res = {"status":True, "result":result}
         return res
 
-    def edit_account_access(self, user_info, username):
+    def edit_account_access(self, user_info, username, categories):
         res  = {"status":False, "error":"Unknown"}
         print ("user_info")
         print (user_info)
         url  = self.api_url+'/Users/%s' % user_info["Id"]
         user_info.update(ACCOUNT_DEFAULTS)
-        user_info["Policy"]["EnabledFolders"] = self.get_account_media_locations(username)
+        user_info["Policy"]["EnabledFolders"] = self.get_account_media_locations(username, categories)
         data = user_info.copy()
         result = self._session.make_request(url=url, headers=self.headers, method="json", payload=data)
         if result.status_code == 204:
@@ -411,7 +414,7 @@ class EmbyHandle(object):
 
         # Setup newly created account with Mani defaults and update user info:
         if user_info:
-            res = self.edit_account_access(user_info, params["username"]);
+            res = self.edit_account_access(user_info, params["username"], params["categories"]);
             if res["status"]:
                 user_info.update(res["result"]);
             # Set password for newly created account
@@ -455,7 +458,7 @@ def test_password_hash(password=""):
 
 def test_user_create(email, username, password):
     handle = EmbyHandle(None, None, True);
-    handle.create_new_user({"email":email,"username":username,"password":password})
+    handle.create_new_user({"email":email,"username":username,"password":password,"categories":["Movies-All","TVShows-All"]})
 
 def test_check_for_user(username):
     handle = EmbyHandle(None, None, True);
@@ -480,8 +483,8 @@ def test_login_user(username, password):
 
 
 if __name__ == '__main__':
-    #test_user_create("manimediamanager@gmail.com", "Do4ybQmU", "password")
+    test_user_create("manimediamanager@gmail.com", "Do4ybQmU", "password")
     #test_password_hash("myrootpassword")
     #test_check_for_user("fooo")
     #test_rescan_user_folders("Do4ybQmU")
-    test_login_user("manimediamanager@gmail.com", "password")
+    #test_login_user("manimediamanager@gmail.com", "password")
