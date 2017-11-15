@@ -28,10 +28,11 @@
 <body>
 <div id="menu">
 <div class="actionButton"></div>
-	<?php if(App::Auth()->is_User()):?>
+  <?php if(App::Auth()->is_User()):?>
+    <?php global $MANI_CONFIG; ?>
     <a href="<?php echo Url::url("/dashboard");?>" class="sub dashboard" data-content="<?php echo Lang::$word->ADM_DASH;?>" data-position="left center"></a>
-    <a href="/emby/" class="sub dark emby" data-content="<?php echo Lang::$word->ADM_EMBY;?>" data-position="left center"><img src="<?php echo FRONTVIEW . '/images/emby.png'; ?>"></a>
-    <a href="/ombi/" class="sub dark ombi" data-content="<?php echo Lang::$word->ADM_OMBI;?>" data-position="left center"><img src="<?php echo FRONTVIEW . '/images/ombi.png'; ?>"></a>
+    <a href="<?php echo $MANI_CONFIG["emby_url"]; ?>" class="sub dark emby" data-content="<?php echo Lang::$word->ADM_EMBY;?>" data-position="left center"><img src="<?php echo FRONTVIEW . '/images/emby.png'; ?>"></a>
+    <a href="<?php echo $MANI_CONFIG["ombi_url"]; ?>" class="sub dark ombi" data-content="<?php echo Lang::$word->ADM_OMBI;?>" data-position="left center"><img src="<?php echo FRONTVIEW . '/images/ombi.png'; ?>"></a>
     <a href="<?php echo Url::url("/dashboard/tvshows");?>" class="sub red tvshows" data-content="<?php echo Lang::$word->ADM_TV_SUBS;?>" data-position="left center"></a>
     <a href="<?php echo Url::url("/dashboard/movies");?>" class="sub red movies" data-content="<?php echo Lang::$word->ADM_MOVIE_SUBS;?>" data-position="left center"></a>
     <a class="sub dark news" data-content="<?php echo Lang::$word->ADM_NEWS;?>" data-position="left center"></a>
