@@ -223,10 +223,10 @@ class EmbyHandle(object):
         res = {"status":False, "error":"Unknown"}
         url = self.api_url+'/Library/VirtualFolders'
         if lib_type == "tvshows":
-            lib_name = "%s-TV" % user_info['Name']
+            lib_name = "TVShows-%s" % user_info['Name']
             dir_name = "TVShows"
         elif lib_type == "movies":
-            lib_name = "%s-Movies" % user_info['Name']
+            lib_name = "Movies-%s" % user_info['Name']
             dir_name = "Movies"
         url_vars = '?collectionType=%s&refreshLibrary=true&name=%s' % (lib_type, lib_name);
         url += url_vars;
@@ -299,7 +299,7 @@ class EmbyHandle(object):
             loc_data = self.get_result(locations)
             for x in loc_data["Items"]:
                 name = x["Name"]
-                if name.split("-")[0] == user_info["Name"]:
+                if user_info["Name"] in name.split("-"):
                     folders.append(x["Id"])
         return folders
 
@@ -345,15 +345,22 @@ class EmbyHandle(object):
         url  = self.api_url+'/Users/%s/Password' % user_info["Id"]
         opas = emby_hash_password(old_password)
         npas = emby_hash_password(new_password)
-        data = {
-            "currentPassword" : opas["sha1"],
-            "newPassword" : npas["sha1"]
-        }
         headers = self.headers.copy()
         headers['Content-Type'] = 'application/x-www-form-urlencoded;'
-        result  = self._session.make_request(url=url, headers=headers, method="post", payload=data)
+        # First reset the password:
+        data = {
+            "resetPassword" : True
+        }
+        result      = self._session.make_request(url=url, headers=headers, method="post", payload=data)
+        if result.status_code == 204: 
+            # If password reset was successful, then apply new password
+            data   = {
+                "currentPassword" : opas["sha1"],
+                "newPassword" : npas["sha1"]
+            }
+            result  = self._session.make_request(url=url, headers=headers, method="post", payload=data)
         if result.status_code == 204:
-            res = {"status":True, "result":result}
+            res     = {"status":True, "result":result}
         return res
 
 
@@ -382,10 +389,27 @@ class EmbyHandle(object):
     def create_new_user(self, params):
         user_info = {'Name':params["username"]}
         self.connect();
+
         # Add new library location for user
-        self.add_library(user_info, "tvshows");
+        add_library = ["tvshows", "movies"]
+        locations   = self.get_result(self.get_media_locations());
+        if locations:
+            for x in locations["Items"]:
+                name = x["Name"]
+                if user_info["Name"] in name.split("-"):
+                    add_library.remove(x["CollectionType"])
+        if "tvshows" in add_library:
+            lib_add_res = self.add_library(user_info, "tvshows");
+        if "movies" in add_library:
+            lib_add_res = self.add_library(user_info, "movies");
+
         # Add new account and update user info from newly create account:
-        user_info = self.get_result(self.add_account(user_info));
+        user_exists = self.check_for_user_by_name({"username":params["username"]});
+        if user_exists["found"]:
+            user_info = user_exists["data"]
+        else:
+            user_info   = self.get_result(self.add_account(user_info));
+
         # Setup newly created account with Mani defaults and update user info:
         if user_info:
             res = self.edit_account_access(user_info);
@@ -417,9 +441,9 @@ def test_password_hash(password=""):
     # {"Password":"5e91f810d83783712f8e50b8b6096121356aee34","PasswordMd5":"364e5de4ad9a7be8375e6adfeb24ee93","Username":"master"}
     print(json.dumps(emby_hash_password(password), indent=4))
 
-def test_user_create(username, password):
+def test_user_create(email, username, password):
     handle = EmbyHandle(None, None, True);
-    handle.create_new_user({"username":username,"password":password})
+    handle.create_new_user({"email":email,"username":username,"password":password})
 
 def test_check_for_user(username):
     handle = EmbyHandle(None, None, True);
@@ -439,7 +463,7 @@ def test_rescan_user_folders(username):
 
 
 if __name__ == '__main__':
-    #test_user_create("fooo", "barr")
+    test_user_create("manimediamanager@gmail.com", "Do4ybQmU", "password")
     #test_password_hash("myrootpassword")
     #test_check_for_user("fooo")
-    test_rescan_user_folders("fooo")
+    #test_rescan_user_folders("fooo")

@@ -31,15 +31,17 @@ class Ajax
 		}
 		if($do=="selectItem")
 		{
+			/*var_dump($_SESSION);
+			die();*/
 			$ret = array();
-			if (isset($_SESSION["email"])) {
+			if (isset($_SESSION["MMP_username"])) {
 				$userid         = @$_SESSION["userid"];
-				$email          = @$_SESSION["email"];
+				$username          = @$_SESSION["MMP_username"];
 				$membership_id  = @$_SESSION["membership_id"];
 				$item_id        = @$_GET["id"];
 				$item_type      = @$_GET["type"];
 
-				$cust_dir = $MANI_CONFIG['libraries'].'/'.$email;
+				$cust_dir = $MANI_CONFIG['libraries'].'/'.$username;
 				Ajax::ensure_dir($cust_dir);
 				if ($item_type == "TV") {
 					$working_cust_dir = $cust_dir.'/TVShows';
@@ -73,7 +75,7 @@ class Ajax
 					}
 				}
 				$user_data = array(
-					"username" => $email
+					"username" => $username
 				);
 				$result = Command::emby_rescan_user_library($user_data);
 			}
@@ -83,9 +85,9 @@ class Ajax
 		if($do=="check_user")
 		{
 			$ret = array();
-			if (isset($_SESSION["email"])) {
+			if (isset($_SESSION["MMP_username"])) {
 				$user_data = array(
-					"username" => @$_SESSION["email"]
+					"username" => @$_SESSION["MMP_username"]
 				);
 				$result = Command::emby_check_user($user_data);
 				echo json_encode(array("result" => $result));
@@ -96,7 +98,7 @@ class Ajax
 		{
 			$ret = array();
 			$user_data = array(
-				"username" => @$_GET["email"]
+				"username" => @$_GET["username"]
 			);
 			$result = Command::emby_check_user($user_data);
 			echo json_encode(array("result" => $result));
@@ -107,8 +109,8 @@ class Ajax
 			$ret = array();
 			$data = array();
 			$data["userid"]      = 2;
-			$data["email"]       = "manimediaserver@gmail.com";
-			$data["password"]    = "password";
+			$data["username"]    = "FOO";
+			$data["password"]    = "BAR";
 			$result = Ajax::create_emby_user_if_not_exists($data);
 			echo json_encode(array("result" => $result));
 			return;
@@ -162,7 +164,8 @@ class Ajax
 		$create_new = false;
 		$return_arr = array("error"=>false);
 		$user_data  = array(
-			"username" => $data["email"]
+			"username" => $data["username"],
+			"password" => $data["password"]
 		);
 		$result = Command::emby_check_user($user_data);
 		if (!empty($result)) {
@@ -179,12 +182,12 @@ class Ajax
 			}
 		}
 		// Create a new user with email address and password
-		$cust_dir = $MANI_CONFIG['libraries'].'/'.$data["email"];
+		$cust_dir = $MANI_CONFIG['libraries'].'/'.$user_data["username"];
 		Ajax::ensure_dir($cust_dir);
 		Ajax::ensure_dir($cust_dir.'/TVShows');
 		Ajax::ensure_dir($cust_dir.'/Movies');
 		if ($create_new) {
-			$result = Command::emby_create_user($data);
+			$result = Command::emby_create_user($user_data);
 		}
 	}
 

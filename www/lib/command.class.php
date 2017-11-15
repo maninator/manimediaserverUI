@@ -74,7 +74,7 @@ class Command
 					"service" => "embyserver",
 					"function" => "create_new_user",
 					"params" => array(
-						"username" => $user_data["email"],
+						"username" => $user_data["username"],
 						"password" => $user_data["password"]
 					)
 				)
