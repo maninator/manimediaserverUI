@@ -36,7 +36,7 @@ class Ajax
 			$ret = array();
 			if (isset($_SESSION["MMP_username"])) {
 				$userid         = @$_SESSION["userid"];
-				$username          = @$_SESSION["MMP_username"];
+				$username       = @$_SESSION["MMP_username"];
 				$membership_id  = @$_SESSION["membership_id"];
 				$item_id        = @$_GET["id"];
 				$item_type      = @$_GET["type"];

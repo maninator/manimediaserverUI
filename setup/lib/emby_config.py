@@ -218,15 +218,15 @@ class EmbyHandle(object):
             return json.loads(result["result"].content.decode())
         return False
 
-    def add_library(self, user_info, lib_type):
+    def add_library(self, username, lib_type):
         # Note - Folder must exists or will return with 400 http error.
         res = {"status":False, "error":"Unknown"}
         url = self.api_url+'/Library/VirtualFolders'
         if lib_type == "tvshows":
-            lib_name = "TVShows-%s" % user_info['Name']
+            lib_name = "TVShows-%s" % username
             dir_name = "TVShows"
         elif lib_type == "movies":
-            lib_name = "Movies-%s" % user_info['Name']
+            lib_name = "Movies-%s" % username
             dir_name = "Movies"
         url_vars = '?collectionType=%s&refreshLibrary=true&name=%s' % (lib_type, lib_name);
         url += url_vars;
@@ -247,7 +247,7 @@ class EmbyHandle(object):
                 "AutomaticRefreshIntervalDays":0,
                 "EnableEmbeddedTitles":False,
                 "PathInfos":[
-                    {"Path":"/libraries/%s/%s" % (user_info['Name'],dir_name)}
+                    {"Path":"/libraries/%s/%s" % (username,dir_name)}
                 ]
             }
         }
@@ -292,14 +292,14 @@ class EmbyHandle(object):
             res = {"status":True, "result":result}
         return res
 
-    def get_account_media_locations(self, user_info):
+    def get_account_media_locations(self, username):
         locations = self.get_media_locations();
         folders = []
         if locations and locations["status"]:
             loc_data = self.get_result(locations)
             for x in loc_data["Items"]:
                 name = x["Name"]
-                if user_info["Name"] in name.split("-"):
+                if username in name.split("-"):
                     folders.append(x["Id"])
         return folders
 
@@ -326,13 +326,13 @@ class EmbyHandle(object):
             res = {"status":True, "result":result}
         return res
 
-    def edit_account_access(self, user_info):
+    def edit_account_access(self, user_info, username):
         res  = {"status":False, "error":"Unknown"}
         print ("user_info")
         print (user_info)
         url  = self.api_url+'/Users/%s' % user_info["Id"]
         user_info.update(ACCOUNT_DEFAULTS)
-        user_info["Policy"]["EnabledFolders"] = self.get_account_media_locations(user_info)
+        user_info["Policy"]["EnabledFolders"] = self.get_account_media_locations(username)
         data = user_info.copy()
         result = self._session.make_request(url=url, headers=self.headers, method="json", payload=data)
         if result.status_code == 204:
@@ -367,10 +367,9 @@ class EmbyHandle(object):
 
     ##################### EXTERNAL EXEC
     def rescan_user_library(self, params):
-        user_info = {'Name':params["username"]}
         # First get media locations:
         self.connect();
-        locations = self.get_account_media_locations(user_info)
+        locations = self.get_account_media_locations(params["username"])
         if locations:
             head   = self.headers.copy()
             head['Content-Type'] = 'application/x-www-form-urlencoded;'
@@ -387,7 +386,7 @@ class EmbyHandle(object):
             return locations
 
     def create_new_user(self, params):
-        user_info = {'Name':params["username"]}
+        user_info = {'Name':params["email"],"username":params["username"]}
         self.connect();
 
         # Add new library location for user
@@ -396,23 +395,23 @@ class EmbyHandle(object):
         if locations:
             for x in locations["Items"]:
                 name = x["Name"]
-                if user_info["Name"] in name.split("-"):
+                if params["username"] in name.split("-"):
                     add_library.remove(x["CollectionType"])
         if "tvshows" in add_library:
-            lib_add_res = self.add_library(user_info, "tvshows");
+            lib_add_res = self.add_library(params["username"], "tvshows");
         if "movies" in add_library:
-            lib_add_res = self.add_library(user_info, "movies");
+            lib_add_res = self.add_library(params["username"], "movies");
 
         # Add new account and update user info from newly create account:
-        user_exists = self.check_for_user_by_name({"username":params["username"]});
+        user_exists = self.check_for_user_by_name(params);
         if user_exists["found"]:
             user_info = user_exists["data"]
         else:
-            user_info   = self.get_result(self.add_account(user_info));
+            user_info = self.get_result(self.add_account(user_info));
 
         # Setup newly created account with Mani defaults and update user info:
         if user_info:
-            res = self.edit_account_access(user_info);
+            res = self.edit_account_access(user_info, params["username"]);
             if res["status"]:
                 user_info.update(res["result"]);
             # Set password for newly created account
@@ -421,12 +420,11 @@ class EmbyHandle(object):
 
 
     def check_for_user_by_name(self, params):
-        username = params["username"]
         self.connect();
         results = self.get_result(self.get_users());
         if results:
             for res in results:
-                if res["Name"] == username:
+                if res["Name"] == params["email"]:
                     return {"found":True, "data":res};
         return {"found":False}
 

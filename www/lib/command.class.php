@@ -53,7 +53,8 @@ class Command
 					"service" => "embyserver",
 					"function" => "check_for_user_by_name",
 					"params" => array(
-						"username" => $user_data["username"]
+						"email" 	=> $user_data["email"],
+						"username" 	=> $user_data["username"]
 					)
 				)
 			)
@@ -74,8 +75,9 @@ class Command
 					"service" => "embyserver",
 					"function" => "create_new_user",
 					"params" => array(
-						"username" => $user_data["username"],
-						"password" => $user_data["password"]
+						"email" 	=> $user_data["email"],
+						"username" 	=> $user_data["username"],
+						"password" 	=> $user_data["password"]
 					)
 				)
 			)
