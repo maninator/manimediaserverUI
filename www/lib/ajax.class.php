@@ -164,6 +164,7 @@ class Ajax
 		$create_new = false;
 		$return_arr = array("error"=>false);
 		$user_data  = array(
+			"email"    => $data["email"],
 			"username" => $data["username"],
 			"password" => $data["password"]
 		);

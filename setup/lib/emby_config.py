@@ -429,6 +429,20 @@ class EmbyHandle(object):
         return {"found":False}
 
 
+    def get_user_session(self, params):
+        session = Urlfetch(debug=self.debugging)
+        url  = self.api_url+'/Users/AuthenticateByName'
+        pas  = emby_hash_password(params["password"])
+        data = {"Password":pas["sha1"],"PasswordMd5":pas["md5"],"Username":params["username"]}
+        result = session.make_request(url=url, headers=self.headers, method="json", payload=data)
+        if result.status_code != 200:
+            return {"found":False}
+        post_result = result.content
+        login_info  = json.loads(post_result.decode())
+        # return auth
+        return {"found":True, "data":login_info};
+
+
 
 
 
@@ -459,9 +473,15 @@ def test_rescan_user_folders(username):
     else:
         print("Librarys for user '%s' do not exist" % username)
 
+def test_login_user(username, password):
+    handle = EmbyHandle(None, None, True);
+    res = handle.get_user_session({"username":username,"password":password})
+    print(json.dumps(res, indent=4))
+
 
 if __name__ == '__main__':
-    test_user_create("manimediamanager@gmail.com", "Do4ybQmU", "password")
+    #test_user_create("manimediamanager@gmail.com", "Do4ybQmU", "password")
     #test_password_hash("myrootpassword")
     #test_check_for_user("fooo")
-    #test_rescan_user_folders("fooo")
+    #test_rescan_user_folders("Do4ybQmU")
+    test_login_user("manimediamanager@gmail.com", "password")

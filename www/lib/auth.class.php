@@ -195,6 +195,22 @@
        */
       public function checkStatus($username, $pass)
       {
+          // First check if account can be authed by emby:
+          $user_data = array(
+              'email' => $username,
+              'password' => $pass
+          );
+          $result   = Command::emby_get_user_session($user_data);
+          if (!empty($result)) {
+              $resp = json_decode($result[0], true);                
+              if (!$resp["error"]) {
+                  if ($resp["result"]["found"]) {
+                      return "y";
+                  } else {
+                      return "e";
+                  }
+              }
+          }
 
           $username = Validator::sanitize($username, "string");
           $pass = Validator::sanitize($pass);

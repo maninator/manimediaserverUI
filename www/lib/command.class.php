@@ -106,4 +106,26 @@ class Command
 		$res = Command::querySocket(json_encode($query));
 		return $res;
 	}
+
+	static function emby_get_user_session($user_data)
+	{
+		$query = array(
+			"name" => "Configure",
+			"type" => "request",
+			"request" => array(
+				"type" => "status",
+				"query" => array(
+					"type" => "service_configure",
+					"service" => "embyserver",
+					"function" => "get_user_session",
+					"params" => array(
+						"username" 	=> $user_data["email"],
+						"password" 	=> $user_data["password"]
+					)
+				)
+			)
+		);
+		$res = Command::querySocket(json_encode($query));
+		return $res;
+	}
 }
