@@ -206,8 +206,6 @@
               if (!$resp["error"]) {
                   if ($resp["result"]["found"]) {
                       return "y";
-                  } else {
-                      return "e";
                   }
               }
           }
