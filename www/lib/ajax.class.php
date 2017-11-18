@@ -108,9 +108,10 @@ class Ajax
 		{
 			$ret = array();
 			$data = array();
-			$data["userid"]      = 2;
-			$data["username"]    = "FOO";
-			$data["password"]    = "BAR";
+			$data["userid"]      = 3;
+			$data["email"]       = "manimediamanager@gmail.com";
+			$data["password"]    = "password";
+			$data["username"]    = "odZg3YQX";
 			$result = Ajax::create_emby_user_if_not_exists($data);
 			echo json_encode(array("result" => $result));
 			return;
@@ -155,7 +156,7 @@ class Ajax
 
 	static function ensure_dir($dir) {
 		if (!file_exists($dir)) {
-		    mkdir($dir, 0777, true);
+			mkdir($dir, 0777, true);
 		}
 	}
 
@@ -168,28 +169,12 @@ class Ajax
 			"username" => $data["username"],
 			"password" => $data["password"]
 		);
-		$result = Command::emby_check_user($user_data);
-		if (!empty($result)) {
-			$resp = json_decode($result[0], true);
-			if ($resp["error"]) {
-				$return_arr["error"] = true;
-				$return_arr["message"] = "Some features seem to not be working correctly. Please come back later...";
-			} else {
-				if ($resp["result"]["found"]) {
-					$return_arr["result"] = true;
-				} else {
-					$create_new = true;
-				}
-			}
-		}
 		// Create a new user with email address and password
 		$cust_dir = $MANI_CONFIG['libraries'].'/'.$user_data["username"];
 		Ajax::ensure_dir($cust_dir);
 		Ajax::ensure_dir($cust_dir.'/TVShows');
 		Ajax::ensure_dir($cust_dir.'/Movies');
-		if ($create_new) {
-			$result = Command::emby_create_user($user_data);
-		}
+		return Command::emby_create_user($user_data);
 	}
 
 	static function get_images() {
