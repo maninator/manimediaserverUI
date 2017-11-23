@@ -210,6 +210,80 @@ DOCKER = {
                 }
             }
         }
+    },
+    'sabnzbd': {
+        'name': "SABnzbd",
+        'description': "SABnzbd",
+        'type': "docker",
+        'source': "linuxserver/sabnzbd",
+        'docker_create': {
+            'container_config' : {
+                'name' : 'sabnzbd',
+                'image' : 'linuxserver/sabnzbd:latest',
+                'environment':{
+                    'TZ': DEFAULT_TZ
+                }, 
+                'volumes' : [
+                    '/downloads',
+                    '/config',
+                    '/incomplete-downloads'
+                ]
+            },
+            'host_config': {
+                'network_mode':'host',
+                'binds' : {
+                    DOWNLOADS_DIR: {
+                        'bind': '/downloads',
+                        'mode': 'rw',
+                    },
+                    BASE_INSTALL_DIR+'/config/sabnzbd/config': {
+                        'bind': '/config',
+                        'mode': 'rw',
+                    },
+                    DOWNLOADS_DIR+'/nzbincomplete': {
+                        'bind': '/incomplete-downloads',
+                        'mode': 'rw',
+                    }
+                }
+            }
+        }
+    },
+    'radarr': {
+        'name': "Radarr",
+        'description': "Radarr",
+        'type': "docker",
+        'source': "linuxserver/radarr",
+        'docker_create': {
+            'container_config' : {
+                'name' : 'radarr',
+                'image' : 'linuxserver/radarr:latest',
+                'environment':{
+                    'TZ': DEFAULT_TZ
+                }, 
+                'volumes' : [
+                    '/downloads',
+                    '/config',
+                    '/media'
+                ]
+            },
+            'host_config': {
+                'network_mode':'host',
+                'binds' : {
+                    DOWNLOADS_DIR: {
+                        'bind': '/downloads',
+                        'mode': 'rw',
+                    },
+                    BASE_INSTALL_DIR+'/config/radarr/config': {
+                        'bind': '/config',
+                        'mode': 'rw',
+                    },
+                    BASE_MEDIA_DIR: {
+                        'bind': '/media',
+                        'mode': 'rw',
+                    }
+                }
+            }
+        }
     }
 }
 
