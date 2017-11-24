@@ -309,7 +309,7 @@ class ExternalSocketService(threading.Thread):
         elif question["type"] == "install":
             self.add_to_event_q(question)
             response = "Installing..."
-        elif question["type"] in ["start", "stop"]:
+        elif question["type"] in ["start", "stop", "restart"]:
             self.add_to_event_q(question)
             response = "Changing the stated of %s" % question["command"];
         elif question["type"] == "configure":
@@ -404,6 +404,12 @@ class MainServiceHandle(threading.Thread):
         if event["type"] == "stop":
             self.busy(True)
             self.controler.stop_service(event["command"])
+            self.busy(False)
+            response["error"] = False
+        if event["type"] == "restart":
+            self.busy(True)
+            self.controler.stop_service(event["command"])
+            self.controler.start_service(event["command"])
             self.busy(False)
             response["error"] = False
         if event["type"] == "configure":
@@ -610,7 +616,7 @@ def action_starter_stopper(runner,services,args,debugging=False):
             status = runner.send_json_query(request_data)
             if status:
                 if "State" in status:
-                    if args.action.lower() == "start":
+                    if args.action.lower() in ["start", "restart"]:
                         break_when = "running"
                     elif args.action.lower() == "stop":
                         break_when = "exited"
@@ -630,7 +636,7 @@ def run_action(args,debugging=False):
     services  = mani_config.Services()
     if args.action == 'install':
         action_installer(runner,services,args,debugging)
-    elif args.action in ['start','stop']:
+    elif args.action in ['start','stop','restart']:
         action_starter_stopper(runner,services,args,debugging)
     elif args.action == 'status':
         request_data = {"name":"Status", "type":"request", "request":{"type":"status","query":{"type":args.command[0]}}};
