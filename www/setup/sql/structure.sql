@@ -1,8 +1,8 @@
 -- ================================================================
 --
 -- @version $Id: structure.sql 2016-09-01 11:12:05 gewa $
--- @package Membership Manager Pro Pro
--- @copyright 2016. wojoscripts.com
+-- @package Mani Media Manager Pro
+-- @copyright 2016. maninator
 --
 -- ================================================================
 -- Database structure

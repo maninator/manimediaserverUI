@@ -3,11 +3,11 @@
    * iDeal IPN
    *
    * @package CMS Pro
-   * @author wojoscripts.com
+   * @author maninator
    * @copyright 2016
    * @version $Id: ipn.php, 2016-04-14 21:12:05 gewa Exp $
    */
-  define("_WOJO", true);
+  define("_MANI", true);
   require_once ("../../init.php");
 
   if (!App::Auth()->is_User())

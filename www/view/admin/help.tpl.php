@@ -2,12 +2,12 @@
   /**
    * Help
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: help.tpl.php, v1.00 2016-05-05 10:12:05 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 ?>
 <h3><?php echo Lang::$word->HP_TITLE;?></h3>
@@ -28,7 +28,7 @@
     <p class="wojo small text">First start by creating a new php page that you want to give access to all of your registered users. Let's call this page for the purpose of this tutorial <strong>reg_only_users.php</strong>. At the very beginning of the page start by adding following php code.</p>
     <div class="wojo space divider"></div>
     <pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
-  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_WOJO&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
+  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_MANI&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
   <span style="color: #008000; font-weight: bold">require_once</span>(<span style="color: #BA2121">&quot;init.php&quot;</span>);
 <span style="color: #BC7A00">?&gt;</span>
 </pre>
@@ -36,7 +36,7 @@
     <p class="wojo small text">Make sure that init.php point to correct directory. For example, If your <strong>reg_only_users.php</strong> page is in the same directory as main script, than no changes are necessary, otherwise you need to enter correct path to your init.php page. Depending where <strong>you placed reg_only_users.php </strong>page, below or above root directory init.php becomes <strong>../init.php</strong> if below the root or <strong>otherdir/init.php</strong> if above the root. Now let's add some protection</p>
     <div class="wojo space divider"></div>
     <pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
-  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_WOJO&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
+  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_MANI&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
   <span style="color: #008000; font-weight: bold">require_once</span>(<span style="color: #BA2121">&quot;init.php&quot;</span>);
   
   <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>App<span style="color: #666666">::</span><span style="color: #7D9029">Auth</span>()<span style="color: #666666">-&gt;</span><span style="color: #7D9029">is_User</span>())
@@ -68,7 +68,7 @@
     <p class="wojo small text">Use one of your existing pages just make sure that file extension is php. Let's call this page for the purpose of this tutorial <strong>login.php</strong>. At the very beginning of the page start by adding following php code.</p>
     <div class="wojo space divider"></div>
     <pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
-  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_WOJO&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
+  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_MANI&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
   <span style="color: #008000; font-weight: bold">require_once</span>(<span style="color: #BA2121">&quot;init.php&quot;</span>);
 <span style="color: #BC7A00">?&gt;</span>
 </pre>
@@ -76,7 +76,7 @@
     <p class="wojo small text">Make sure that <strong>init.php</strong> point to correct directory. For example, If your <strong>login.php</strong> page is in the same directory as main script, than no changes are necessary, otherwise you need to enter correct path to your init.php page. Depending where you placed login.php page, below or above root directory <strong>init.php</strong> becomes <strong>../init.php</strong> if below the root or <strong>otherdir/init.php</strong> if above the root.</p>
     <div class="wojo space divider"></div>
     <pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
-  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_WOJO&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
+  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_MANI&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
   <span style="color: #008000; font-weight: bold">require_once</span>(<span style="color: #BA2121">&quot;init.php&quot;</span>);
 
   <span style="color: #008000; font-weight: bold">if</span> (App<span style="color: #666666">::</span><span style="color: #7D9029">Auth</span>()<span style="color: #666666">-&gt;</span><span style="color: #7D9029">is_User</span>())
@@ -114,7 +114,7 @@
     <p class="wojo small text">You can also use an automated page builder from here Page Builder. First start by creating a new php page that you want to give access to all of your registered users. Let's call this page for the purpose of this tutorial <strong>members_only.php</strong>. At the very beginning of the page start by adding following php code:</p>
     <div class="wojo space divider"></div>
     <pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
-  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_WOJO&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
+  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_MANI&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
   <span style="color: #008000; font-weight: bold">require_once</span>(<span style="color: #BA2121">&quot;init.php&quot;</span>);
 <span style="color: #BC7A00">?&gt;</span>
 </pre>
@@ -122,7 +122,7 @@
     <p class="wojo small text">Make sure that <strong>init.php</strong> point to correct directory. For example, If your members_only.php page is in the same directory as main script, than no changes are necessary, otherwise you need to enter correct path to your init.php page. Depending where you placed <strong>members_only.php</strong> page, below or above root directory init.php becomes <strong>../init.php</strong> if below the root or <strong>otherdir/init.php</strong> if above the root. Now let's add some protection</p>
     <div class="wojo space divider"></div>
     <pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
-  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_WOJO&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
+  <span style="color: #008000">define</span>(<span style="color: #BA2121">&quot;_MANI&quot;</span>, <span style="color: #008000; font-weight: bold">true</span>);
   <span style="color: #008000; font-weight: bold">require_once</span>(<span style="color: #BA2121">&quot;init.php&quot;</span>);
   
   <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>Membership<span style="color: #666666">::</span><span style="color: #7D9029">is_valid</span>(<span style="color: #BA2121">[3,4]</span>))
@@ -154,9 +154,9 @@ In this section here you would place your content that users with valid membersh
   <!-- cron -->
   <div id="cron" class="wojo tab item">
     <h4>Setting up cron jobs</h4>
-    <p class="wojo small text">Membership Manager Pro is equipped with cron job utility. By default there are two files inside /cron/ directory cron.php will automatically send emails to all users whose membership had expired at the present day, and also to all users whose membership is about to expire within 7 days. Cron file is used in recurring payments for Stripe gateway.</p>
+    <p class="wojo small text">Mani Media Manager is equipped with cron job utility. By default there are two files inside /cron/ directory cron.php will automatically send emails to all users whose membership had expired at the present day, and also to all users whose membership is about to expire within 7 days. Cron file is used in recurring payments for Stripe gateway.</p>
     <div class="wojo space divider"></div>
-    <p class="wojo small text">Membership Manager Pro is equipped with cron job utility. By default there are two files inside /cron/ directory cron.php will automatically send emails to all users whose membership had expired at the present day, and also to all users whose membership is about to expire within 7 days. Cron file is used in recurring payments for Stripe gateway.</p>
+    <p class="wojo small text">Mani Media Manager is equipped with cron job utility. By default there are two files inside /cron/ directory cron.php will automatically send emails to all users whose membership had expired at the present day, and also to all users whose membership is about to expire within 7 days. Cron file is used in recurring payments for Stripe gateway.</p>
     <p class="wojo small text"> Each hosting company might have different way of setting cron jobs. Here will give you few examples:</p>
     <ul class="wojo small text">
       <li>For CPanel - http://www.siteground.com/tutorials/cpanel/cron_jobs.htm</li>

@@ -2,7 +2,7 @@
 <h2 id="install">General Configuration</h2>
 <?php echo ($_SESSION['msg']) ?  "<div class=\"error\">{$_SESSION['msg']}</div>" : '';?>
 <form action="setup.php?step=2" method="post">
-  <p> Setting up Membership Manager Pro to run on your server involves 3 simple steps...Please enter the hostname of the server Membership Manager Pro is to be installed on. Enter the MySQL username, password and database name you wish to use with Membership Manager Pro. It's strongly recommended to install sample data. </p>
+  <p> Setting up Mani Media Manager to run on your server involves 3 simple steps...Please enter the hostname of the server Mani Media Manager is to be installed on. Enter the MySQL username, password and database name you wish to use with Mani Media Manager. It's strongly recommended to install sample data. </p>
   <h3>1. MySQL database configuration:</h3>
   <table class="inner-content data">
     <tr>
@@ -33,7 +33,7 @@
   </table>
   <input type="hidden" name="db_action" id="db_action" value="1">
   <h3>2. Common configuration</h3>
-  <p>Configure correct paths and URLs to your Membership Manager Pro.</p>
+  <p>Configure correct paths and URLs to your Mani Media Manager.</p>
   <table class="inner-content data">
     <tr>
       <td>Install Directory:</td>

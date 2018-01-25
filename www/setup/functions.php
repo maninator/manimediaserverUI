@@ -2,12 +2,12 @@
   /**
    * Functions
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: functions.php, v1.00 2016-01-05 10:12:05 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 
   /**
@@ -157,14 +157,14 @@
 		  . "\t/** \n" 
 		  . "\t* Configuration\n"
 		  . "\n"
-		  . "\t* @package Wojo Framework\n"
-		  . "\t* @author wojoscripts.com\n"
+		  . "\t* @package Mani Media Manager\n"
+		  . "\t* @author maninator\n"
 		  . "\t* @copyright " . date('Y') . "\n"
 		  . "\t* @version Id: config.ini.php, v1.00 " . date('Y-m-d h:i:s') . " gewa Exp $\n"
 		  . "\t*/\n"
 
 		  . " \n" 
-		  . "\t if (!defined(\"_WOJO\")) \n"
+		  . "\t if (!defined(\"_MANI\")) \n"
 		  . "     die('Direct access to this location is not allowed.');\n"
 		  
 		  . " \n" 
@@ -216,7 +216,7 @@
       echo '<html>' . "\n";
       echo '<head>' . "\n";
       echo '<meta charset="utf-8">' . "\n";
-      echo '<title>Wojoscripts - Web Installer</title>' . "\n";
+      echo '<title>Mani Media Manager - Web Installer</title>' . "\n";
       echo '<link rel="stylesheet" type="text/css" href="style.css">' . "\n";
       echo '</head>' . "\n";
       echo '<body>' . "\n";
@@ -233,8 +233,8 @@
   {
       
       echo '</div>' . "\n";
-      echo '<div id="copyright">Wojoscripts<br />' . "\n";
-      echo 'Copyright &copy; ' . date("Y") . ' Wojoscripts.com';
+      echo '<div id="copyright">Mani Media Manager<br />' . "\n";
+      echo 'Copyright &copy; ' . date("Y") . ' maninator';
       echo '</div>' . "\n";
       echo '<script type="text/javascript">' . "\n";
       

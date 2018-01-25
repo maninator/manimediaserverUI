@@ -3,13 +3,13 @@
   /**
    * Authentication Class
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: aout.class.php, v1.00 2016-06-05 10:12:05 gewa Exp $
    */
 
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 
   class Auth
@@ -178,6 +178,7 @@
                 $data["password"]    = $password;
                 $data["username"]    = $row->username;
                 $result = Ajax::create_emby_user_if_not_exists($data);
+                // TODO: Add debug logging here for result. Want to see if it failed for some reason
               }
               return true;
           } else {
@@ -200,14 +201,10 @@
               'email' => $username,
               'password' => $pass
           );
-          $result   = Command::emby_get_user_session($user_data);
-          if (!empty($result)) {
-              $resp = json_decode($result[0], true);                
-              if (!$resp["error"]) {
-                  if ($resp["result"]["found"]) {
-                      return "y";
-                  }
-              }
+          $emby     = new Emby();
+          $result   = $emby->get_user_session($user_data);
+          if ($result['found']) {
+              return "y";
           }
 
           $username = Validator::sanitize($username, "string");

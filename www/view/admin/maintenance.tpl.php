@@ -2,12 +2,12 @@
   /**
    * Maintenance
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: maintenance.tpl.php, v1.00 2016-05-05 10:12:05 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 	  
   if (!Auth::checkAcl("owner")) : print Message::msgError(Lang::$word->NOACCESS); return; endif;

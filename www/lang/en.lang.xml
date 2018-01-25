@@ -43,7 +43,7 @@
   <phrase section="Global" data="DELCONFIRM2">This action cannot be undone!!!</phrase>
   <phrase section="Global" data="DELCONFIRM3">The item will remain in Trash for 30 days. To remove it permanently, go to Trash and empty it.</phrase>
   <phrase section="Global" data="DELCONFIRM4">Move [NAME] to the archive?</phrase>
-  <phrase section="Global" data="DELCONFIRM5">This will keep the user in your Freelance Manager, but prevent them from logging in.</phrase>
+  <phrase section="Global" data="DELCONFIRM5">This will keep the user in your Mani Media Manager, but prevent them from logging in.</phrase>
   <phrase section="Global" data="DELCONFIRM6">Remove [NAME] from the archive?</phrase>
   <phrase section="Global" data="DELCONFIRM7">This action will restore user to it's original sate.</phrase>
   <phrase section="Global" data="DELCONFIRM8">This action will restore company to it's original sate.</phrase>
@@ -286,6 +286,9 @@
   <phrase section="Accounts" data="M_ZIP">Postal Code/Zip</phrase>
   <phrase section="Accounts" data="M_COUNTRY">Country</phrase>
   <phrase section="Accounts" data="M_EMAIL">Email Address</phrase>
+  <phrase section="Accounts" data="M_TNX">Transaction Id</phrase>
+  <phrase section="Accounts" data="M_PLAN">Membership Plan</phrase>
+  <phrase section="Accounts" data="M_AMOUNT">Amount</phrase>
   <phrase section="Accounts" data="M_EMAIL1">Email</phrase>
   <phrase section="Accounts" data="M_EMAIL_R1">Please Enter Valid Email Address</phrase>
   <phrase section="Accounts" data="M_EMAIL_R2">Entered Email Address Is Already In Use.</phrase>
@@ -367,7 +370,7 @@
   <phrase section="Admin Menus" data="ADM_GATE">Payment Options</phrase>
   <phrase section="Admin Menus" data="ADM_LNGMNG">Language</phrase>
   <phrase section="Admin Menus" data="ADM_HELP">Help</phrase>
-  <phrase section="Admin Menus" data="ADM_MEMBS">Memberships</phrase>
+  <phrase section="Admin Menus" data="ADM_MEMBS">Menu</phrase>
   <phrase section="Admin Menus" data="ADM_MTNC">Maintenance</phrase>
   <phrase section="Admin Menus" data="ADM_NEWS">News</phrase>
   <phrase section="Admin Menus" data="ADM_PERMS">Permissions</phrase>
@@ -380,7 +383,7 @@
   <phrase section="Admin Menus" data="ADM_TRASH">Trash</phrase>
   <phrase section="Admin Menus" data="ADM_TRANS">Transactions</phrase>
   <phrase section="Admin Menus" data="ADM_USERS">Users</phrase>
-  <phrase section="Admin Menus" data="ADM_EMBY">Emby</phrase>
+  <phrase section="Admin Menus" data="ADM_EMBY">Clickfix</phrase>
   <phrase section="Admin Menus" data="ADM_OMBI">Requests</phrase>
   <phrase section="Admin Menus" data="ADM_TV_SUBS">TV Subscriptions</phrase>
   <phrase section="Admin Menus" data="ADM_MOVIE_SUBS">Movie Subscriptions</phrase>

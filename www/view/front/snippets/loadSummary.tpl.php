@@ -2,12 +2,12 @@
   /**
    * Payment Summary
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: loadSummary.tpl.php, v1.00 2016-03-02 10:12:05 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 ?>
 <table class="wojo basic unstackable table">

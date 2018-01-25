@@ -2,12 +2,12 @@
   /**
    * Class Pagination
    *
-   * @ackage Wojo Framework
-   * @author wojoscripts.com
+   * @ackage Mani Media Manager
+   * @author maninator
    * @copyright 2015
    * @version $Id: paginate.class.php, v1.00 2014-10-05 10:12:05 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
   
   class Paginator

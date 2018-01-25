@@ -20,7 +20,7 @@
    * @copyright  2009-2012 PayFast (Pty) Ltd
    * @license    http://www.opensource.org/licenses/lgpl-license.php LGPL
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 	  
   //enable or disable debugging

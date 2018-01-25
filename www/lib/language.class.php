@@ -3,12 +3,12 @@
   /**
    * Language
    * 
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2014
    * @version $Id: lang.class.php, v 1.00 2014-01-10 21:12:05 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 
 

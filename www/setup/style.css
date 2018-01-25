@@ -30,7 +30,6 @@ body {
   font-family: "mavenProRegular", ​Arial, ​sans-serif;
   line-height: 1.3em;
   color: #50646F;
-  background-color: #2F2020;
   margin: 0;
   padding: 0
 }
@@ -146,7 +145,6 @@ table.inner-content tbody tr td img {
 }
 #copyright {
   text-align: center;
-  color:#eee;
   margin: 0 auto 1em
 }
 div.error {

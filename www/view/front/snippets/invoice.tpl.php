@@ -2,12 +2,12 @@
   /**
    * Invoice
    *
-   * package Wojo Framework
-   * @author wojoscripts.com
+   * package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: invoice.tpl.php, v3.00 2015-03-10 10:12:05 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

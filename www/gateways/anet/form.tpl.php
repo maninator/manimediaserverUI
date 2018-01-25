@@ -2,12 +2,12 @@
   /**
    * Authorize.Net Form
    *
-   * @package Car Delaer Pro
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2015
    * @version $Id: form.tpl.php, v3.00 2015-03-20 10:12:05 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
   
   $months = array();

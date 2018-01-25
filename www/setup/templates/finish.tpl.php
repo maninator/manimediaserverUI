@@ -14,7 +14,7 @@
   <tr>
     <td>Configuration File</td>
     <td>Available for download<br />
-      If there was a problem creating config file, you MUST save config.inc.php file to your local PC and then upload to Membership Manager Pro <strong>/lib/</strong> directory. <a href="javascript:void(0);" onclick="if (document.getElementById('file_content').style.display=='block') { document.getElementById('file_content').style.display='none';} else {document.getElementById('file_content').style.display='block'}">Click here</a> to view the content of config.ini.php file.<br />
+      If there was a problem creating config file, you MUST save config.inc.php file to your local PC and then upload to Mani Media Manager <strong>/lib/</strong> directory. <a href="javascript:void(0);" onclick="if (document.getElementById('file_content').style.display=='block') { document.getElementById('file_content').style.display='none';} else {document.getElementById('file_content').style.display='block'}">Click here</a> to view the content of config.ini.php file.<br />
       <div style="margin: 10px 0; text-align: center;">
         <input type="button" onclick="document.location.href='safe_config.php?h=<?php echo $_POST['dbhost'].'&u='.$_POST['dbuser'].'&p='.$_POST['dbpwd'].'&n='.$_POST['dbname'].'&k='.sessionKey();?>';" value="Download config.ini.php" />
       </div></td>

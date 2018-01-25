@@ -1,8 +1,8 @@
 -- ================================================================
 --
 -- @version $Id: structure.sql 2016-09-01 12:12:05 gewa $
--- @package Membership Manager Pro
--- @copyright 2016. wojoscripts.com
+-- @package Mani Media Manager
+-- @copyright 2016. maninator
 --
 -- ================================================================
 -- Database Content
@@ -33,7 +33,7 @@ INSERT INTO `memberships` (`id`, `title`, `description`, `price`, `days`, `perio
 --
 
 INSERT INTO `news` (`id`, `title`, `body`, `author`, `created`, `active`) VALUES
-(1, 'Welcome to our Client Area!', '<p>We are pleased to announce the new release of fully responsive Membership Manager Pro v 4.0</p>', 'Web Master', '2015-03-14 04:00:00', 1);
+(1, 'Welcome to our Client Area!', '<p>We are pleased to announce the new release of fully responsive Mani Media Manager v 4.0</p>', 'Web Master', '2015-03-14 04:00:00', 1);
 
 --
 -- Dumping data for table `payments`

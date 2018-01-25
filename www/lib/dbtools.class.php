@@ -3,12 +3,12 @@
    * DB Tools Class
    *
    * @package Digital Downloads Pro
-   * @author wojoscripts.com
+   * @author maninator
    * @copyright 2015
    * @version $Id: class_dbtools.php, v1.00 2015-04-10 10:12:05 gewa Exp $
    */
   
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 	  
   
@@ -190,7 +190,7 @@
           $dump .= '-- ' . self::nl;
           $dump .= '-- @version: ' . DB_DATABASE . '.sql ' . date('M j, Y') . ' ' . date('H:i') . ' gewa' . self::nl;
           $dump .= '-- @package ' . App::Core()->wojon . ' v.' . App::Core()->wojov . self::nl;
-          $dump .= '-- @author wojoscripts.com.' . self::nl;
+          $dump .= '-- @author maninator.' . self::nl;
           $dump .= '-- @copyright ' . date('Y') . '' . self::nl;
           $dump .= '-- ' . self::nl;
           $dump .= '-- --------------------------------------------------------------------------------' . self::nl;

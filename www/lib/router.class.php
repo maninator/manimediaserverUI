@@ -2,13 +2,13 @@
   /**
    * Router Class
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2015
    * @version $Id: router.class.php, v1.00 2015-04-20 18:20:24 gewa Exp $
    */
 
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 	  
 	  

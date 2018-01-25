@@ -3,12 +3,12 @@
   /**
    * Captcha
    *
-   * @package Freelance Manager
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: captcha.php, v2.00 2016-04-20 10:12:05 gewa Exp $
    */
-  define("_WOJO", true);
+  define("_MANI", true);
   require_once("init.php");
   
   header("Content-type: image/png");

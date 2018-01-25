@@ -43,8 +43,8 @@
   </tr>
 </table>
 <h3>2. Server Extensions</h3>
-<p>These settings are recommended for PHP in order to ensure full compatibility with Membership Manager Pro.
-  However, Membership Manager Pro will still operate if your settings do not quite match the recommended.</p>
+<p>These settings are recommended for PHP in order to ensure full compatibility with Mani Media Manager.
+  However, Mani Media Manager will still operate if your settings do not quite match the recommended.</p>
 <table class="inner-content">
   <thead>
     <tr>
@@ -100,7 +100,7 @@
   </tr>
 </table>
 <h3>3. Directory &amp; File Permissions</h3>
-<p>In order for Membership Manager Pro to function correctly it needs to be able to access or write to certain files or directories. If you see "Unwriteable" you need to change the permissions on the file or directory to allow Membership Manager Pro to write to it. </p>
+<p>In order for Mani Media Manager to function correctly it needs to be able to access or write to certain files or directories. If you see "Unwriteable" you need to change the permissions on the file or directory to allow Mani Media Manager to write to it. </p>
 <table class="inner-content">
   <?php getWritableCell('lib');?>
   <?php getWritableCell('uploads');?>

@@ -2,12 +2,12 @@
   /**
    * Class Admin
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: admin.class.php, v1.00 2016-04-20 18:20:24 gewa Exp $
    */
-  if (!defined("_WOJO"))
+  if (!defined("_MANI"))
       die('Direct access to this location is not allowed.');
 
 
@@ -668,13 +668,13 @@
 			  . "\t/** \n" 
 			  . "\t* " . $safe->pagename . "\n" 
 			  . "\t*" . " \n" 
-			  . "\t* @package Membership Manager Pro\n" 
-			  . "\t* @author wojoscripts.com\n" 
+			  . "\t* @package Mani Media Manager\n" 
+			  . "\t* @author maninator\n" 
 			  . "\t* @copyright " . date('Y') . "\n" 
 			  . "\t* @version Id: " . $safe->pagename . ".php, v4.0 " . date('Y-m-d H:i:s') . " gewa Exp $\n" 
 			  . "\t*/\n" 
 			  . " \n" 
-			  . "\t define(\"_WOJO\", true); \n" 
+			  . "\t define(\"_MANI\", true); \n" 
 			  . "\t require_once(\"init.php\");\n" 
 			  . " \n" . "?>";
 

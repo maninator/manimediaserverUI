@@ -2,12 +2,12 @@
   /**
    * Skrill IPN
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: ipn.php, v1.00 2016-06-08 10:12:05 gewa Exp $
    */
-  define("_WOJO", true);
+  define("_MANI", true);
   require_once("../../init.php");
   
   /* only for debuggin purpose. Create logfile.txt and chmot to 0777

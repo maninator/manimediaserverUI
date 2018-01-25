@@ -2,8 +2,8 @@
   /**
    * Safe Configuration
    *
-   * @package Freelance Manager
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2014
    * @version $Id: safe_config.php, v3.00 2014-04-20 10:12:05 gewa Exp $
    */
@@ -22,14 +22,14 @@
 		  . "\t/** \n" 
 		  . "\t* Configuration\n"
 		  . "\n"
-		  . "\t* @package Wojo Framework\n"
-		  . "\t* @author wojoscripts.com\n"
+		  . "\t* @package Mani Media Manager\n"
+		  . "\t* @author maninator\n"
 		  . "\t* @copyright " . date('Y') . "\n"
 		  . "\t* @version Id: config.ini.php, v1.00 " . date('Y-m-d h:i:s') . " gewa Exp $\n"
 		  . "\t*/\n"
 
 		  . " \n" 
-		  . "\t if (!defined(\"_WOJO\")) \n"
+		  . "\t if (!defined(\"_MANI\")) \n"
 		  . "     die('Direct access to this location is not allowed.');\n"
 		  
 		  . " \n" 

@@ -2,12 +2,12 @@
   /**
    * Setup
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: setup.php, v1.00 2016-01-05 10:12:05 gewa Exp $
    */
-  define("_WOJO", true);
+  define("_MANI", true);
   define('DEBUG', true);
 
   if (strlen(session_id()) < 1)

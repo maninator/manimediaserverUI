@@ -2,12 +2,12 @@
   /**
    * PayPal IPN
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: ipn.php, v1.00 2016-06-08 10:12:05 gewa Exp $
    */
-  define("_WOJO", true);
+  define("_MANI", true);
 
   ini_set('log_errors', true);
   ini_set('error_log', dirname(__file__) . '/ipn_errors.log');

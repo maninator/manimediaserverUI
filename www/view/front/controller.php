@@ -2,12 +2,12 @@
   /**
    * Controller
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: controller.php, v1.00 2016-08-05 10:12:05 gewa Exp $
    */
-  define("_WOJO", true);
+  define("_MANI", true);
   require_once("../../init.php");
 
   $action = Validator::post('action');
@@ -65,6 +65,27 @@
 	      if(!App::Auth()->is_User())
 			  exit;
           App::FrontController()->getCoupon();
+      break;
+
+      // new route
+
+      case "checkEmail":
+
+          $email = Validator::post('email');
+          $response = Auth::emailExists($email);
+          echo json_encode(['emailExists' => $response]);   
+      break;
+       /* == Register == */
+      case "registerApi":
+      
+        App::ApiController()->RegistrationFromApi();
+      break;
+
+         /* == checkPlan == */
+      case "checkPlan":
+
+          App::ApiController()->checkPlan();
+          
       break;
 	  
   endswitch;

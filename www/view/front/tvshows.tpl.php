@@ -1,5 +1,5 @@
 <?php
-if (!defined("_WOJO"))
+if (!defined("_MANI"))
     die('Direct access to this location is not allowed.');
 ?>
 <div class="content-center"><img src="<?php echo UPLOADURL;?>/avatars/<?php echo (App::Auth()->avatar) ? App::Auth()->avatar : "blank.png";?>" alt="" class="avatar"></div>

@@ -2,13 +2,13 @@
   /**
    * Ajax Class
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: Ajax.class.php, v1.00 2016-04-20 18:20:24 gewa Exp $
    */
 
-	if (!defined("_WOJO"))
+	if (!defined("_MANI"))
 		die('Direct access to this location is not allowed.');
 
   
@@ -77,7 +77,8 @@ class Ajax
 				$user_data = array(
 					"username" => $username
 				);
-				$result = Command::emby_rescan_user_library($user_data);
+				$emby   = new Emby();
+				$result = $emby->rescan_user_library($user_data);
 			}
 			echo json_encode(array("result" => $ret));
 			return;
@@ -89,7 +90,8 @@ class Ajax
 				$user_data = array(
 					"username" => @$_SESSION["MMP_username"]
 				);
-				$result = Command::emby_check_user($user_data);
+				$emby   = new Emby();
+				$result = $emby->check_for_user_by_name($user_data);
 				echo json_encode(array("result" => $result));
 				return;
 			}
@@ -100,7 +102,8 @@ class Ajax
 			$user_data = array(
 				"username" => @$_GET["username"]
 			);
-			$result = Command::emby_check_user($user_data);
+			$emby   = new Emby();
+			$result = $emby->check_for_user_by_name($user_data);
 			echo json_encode(array("result" => $result));
 			return;
 		}
@@ -174,7 +177,8 @@ class Ajax
 		Ajax::ensure_dir($cust_dir);
 		Ajax::ensure_dir($cust_dir.'/TVShows');
 		Ajax::ensure_dir($cust_dir.'/Movies');
-		return Command::emby_create_user($user_data);
+		$emby = new Emby();
+		return $emby->ensure_user($user_data);
 	}
 
 	static function get_images() {

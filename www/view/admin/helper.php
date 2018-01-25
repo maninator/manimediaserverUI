@@ -2,12 +2,12 @@
   /**
    * Helper
    *
-   * @package Wojo Framework
-   * @author wojoscripts.com
+   * @package Mani Media Manager
+   * @author maninator
    * @copyright 2016
    * @version $Id: helper.php, v1.00 2016-08-05 10:12:05 gewa Exp $
    */
-  define("_WOJO", true);
+  define("_MANI", true);
   require_once("../../init.php");
 	  
   if (!App::Auth()->is_Admin())
