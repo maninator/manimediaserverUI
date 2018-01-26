@@ -1,0 +1,47 @@
+autoindex off;
+set $appserverhost 127.0.0.1;
+
+location /mani/ {
+    if ($request_uri ~ "^(.*)/{2,}(.*)$"){
+        set $rule_0 1$rule_0;
+        set $bref_1 $1;
+        set $bref_2 $2;
+    }
+    if ($rule_0 = "1"){
+        rewrite /. /$bref_1/$bref_2 permanent;
+    }
+
+    if (!-f $request_filename){
+        set $rule_2 1$rule_2;
+    }
+    if (!-d $request_filename){
+        set $rule_2 2$rule_2;
+    }
+    if ($rule_2 = "21"){
+        rewrite /. /mani/index.php last;
+    }
+}
+
+location ~ \.(htaccess|htpasswd|ini|log|sh|inc|bak|cache|tpl)$ {
+    deny all;
+}
+
+location /emby/ {
+    proxy_pass http://$appserverhost:8096;
+    proxy_set_header Host $host;
+    proxy_buffering off;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #auth_basic "Username and Password Required";
+    #auth_basic_user_file /etc/nginx/.htpasswd;
+}
+
+location /ombi/ {
+    proxy_pass http://$appserverhost:3579;
+    proxy_set_header Host $host;
+    proxy_buffering off;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #auth_basic "Username and Password Required";
+    #auth_basic_user_file /etc/nginx/.htpasswd;
+}
