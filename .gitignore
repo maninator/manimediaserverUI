@@ -4,8 +4,8 @@
 /nginx/mani-snippets/mani.conf
 /nginx/nginx.conf
 /nginx/site-confs/default
-/www/config.ini
 /www/*.php
+/www/mani/config.ini
 /www/mani/lib/config.ini.php
 /www/mani/view/admin/cache/master_main.css
 /www/mani/view/front/cache/master_main.css

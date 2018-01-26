@@ -29,7 +29,14 @@
       $MEDIA_MOVIE[] = trim($dir);
     }
   }
-  
+
+  define('EMBY_HOST', $MANI_CONFIG['host']);
+  define('EMBY_PORT', $MANI_CONFIG['port']);
+  define('EMBY_USER', $MANI_CONFIG['user']);
+  define('EMBY_PASS', $MANI_CONFIG['pass']);
+  define('EMBY_LIBRARY_DIR', $MANI_CONFIG['libraries']); // Folder where user favorite media content links are created
+
+
   $configFile = BASEPATH . "lib/config.ini.php";
   if (file_exists($configFile)) {
       require_once($configFile);

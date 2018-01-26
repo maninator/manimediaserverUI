@@ -8,17 +8,11 @@
     * @version $Id: emby.class.php, v1.00 2016-04-20 18:20:24 gewa Exp $
     */
 
-    /*if (!defined("_MANI"))
-        die('Direct access to this location is not allowed.');*/
+    if (!defined("_MANI"))
+        die('Direct access to this location is not allowed.');
 
 
 $debugging = False;
-
-define('EMBY_HOST', 'easyuse.tv');
-define('EMBY_PORT', '8096');
-define('EMBY_USER', 'master');
-define('EMBY_PASS', 'mymasterpassword');
-define('EMBY_LIBRARY_DIR', '/media/libraries'); // Folder where user favorite media content links are created
 
 
 class Emby
@@ -37,10 +31,6 @@ class Emby
     private $_authheadder       = NULL;
 
     public function __construct($params=array()) {
-        $this->con          = @$params['con'];
-        $this->cache        = @$params['cache'];
-        $this->debugging    = @$params['debugging'];
-
         $this->_authed      = False;
         $this->_authheader  = $this->DEF_AUTH_HEADER;
         $this->API_URL      = 'http://' . EMBY_HOST . ':' . EMBY_PORT . '/emby';
