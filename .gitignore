@@ -1,7 +1,10 @@
 /config
+/keys
+/log
 /nginx/mani-snippets/mani.conf
 /nginx/nginx.conf
 /nginx/site-confs/default
+/www/config.ini
 /www/lib/config.ini.php
 /www/view/admin/cache/master_main.css
 /www/view/front/cache/master_main.css

@@ -14,7 +14,7 @@
   define("BASEPATH", $BASEPATH);
 
   // Import Mani config
-  $MANI_CONFIG = parse_ini_file($BASEPATH."/../config/config.ini");
+  $MANI_CONFIG = parse_ini_file($BASEPATH."/config.ini");
   $MEDIA_TV = array();
   if (!empty($MANI_CONFIG['libraries_tv_dirs'])) {
     $dirs = explode(',',$MANI_CONFIG['libraries_tv_dirs']);
