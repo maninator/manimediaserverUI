@@ -172,6 +172,11 @@ class Ajax
 			"username" => $data["username"],
 			"password" => $data["password"]
 		);
+		// TODO: Check if user wants all drives
+		$user_data['categories'] = array(
+			"Movies-All",
+			"TVShows-All"
+		);
 		// Create a new user with email address and password
 		$cust_dir = $MANI_CONFIG['libraries'].'/'.$user_data["username"];
 		Ajax::ensure_dir($cust_dir);
