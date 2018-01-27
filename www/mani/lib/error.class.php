@@ -118,4 +118,25 @@
           }
       }
 
+
+      /**
+       * wError::logError()
+       * 
+       * @param mixed $text
+       * @param mixed $file
+       * @param mixed $showMessage
+       * @return
+       */
+      public static function logError($text, $file, $showMessage = False) {
+          $fp = fopen(BASEPATH."/error.log", "a");
+          if ($fp!==false) {
+              $date = date("d/m/Y H:i", time());
+              fwrite($fp, $date." - ".$file." - ".$text."\n");
+              fclose($fp);
+          }
+          if ($showMessage) {
+              Message::msgSingleError('An error has been logged at '.date("jS M H:i", time()).' please contact support or try again.'); 
+          }
+      }
+
   }

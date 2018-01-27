@@ -85,24 +85,6 @@ class Emby
         );
     }
 
-    function logError($text, $file, $showMessage = False) {
-        global $debugging;
-        // TODO: Make this function global
-        $fp = fopen("../error.log", "a");
-        if ($fp!==false) {
-            $date = date("d/m/Y H:i", time());
-            fwrite($fp, $date." - ".$file." - ".$text."\n");
-            fclose($fp);
-        }
-        if ($showMessage) {
-            // TODO ADD MESSAGE TO MANI DEBUGGER
-            //addMessage('An error has been logged at '.date("jS M H:i", time()).' please contact support or try again.');
-            if ($debugging) {
-                echo("\n[".date("jS M H:i", time())."] ERROR - " . $text . "\n\n");
-            } 
-        }
-    }
-
     function curl_post($url, $method = 'GET', array $data = NULL, $headers=NULL, array $options = array()) { 
         global $debugging;
         //global $cookieFileLocation;
@@ -155,7 +137,7 @@ class Emby
             if ($httpcode != 204){
                 $error = curl_error($ch);
                 trigger_error($error);
-                $this->logError($error, __FILE__ . ', LINE #' . __LINE__);
+                wError::logError($error, __FILE__ . ', LINE #' . __LINE__);
             }
         } 
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -215,7 +197,7 @@ class Emby
             $this->_authheader = $this->DEF_AUTH_HEADER . ', Token="' . $login_info['AccessToken'] . '"';
             return $login_info;
         } else {
-            $this->logError('Unable to login', __FILE__ . ', LINE #' . __LINE__);
+            wError::logError('Unable to login', __FILE__ . ', LINE #' . __LINE__);
         }
     }
 
@@ -250,7 +232,7 @@ class Emby
         if ($result['status_code'] == 200) {
             $res = array("status" => True, "result" => $result["result"]);
         } else {
-            $this->logError('Unable to retrieve users', __FILE__ . ', LINE #' . __LINE__);
+            wError::logError('Unable to retrieve users', __FILE__ . ', LINE #' . __LINE__);
         }
         return $res;
     }
@@ -263,7 +245,7 @@ class Emby
         if ($result['status_code'] == 200) {
             $res = array("status" => True, "result" => $result["result"]);
         } else {
-            $this->logError('Unable to get media locations', __FILE__ . ', LINE #' . __LINE__);
+            wError::logError('Unable to get media locations', __FILE__ . ', LINE #' . __LINE__);
         }
         return $res;
     }
@@ -327,13 +309,13 @@ class Emby
         if ($result['status_code'] == 400) {
             if (strpos($result['result'], 'The specified path does not exist') !== false) {
                 $res["error"]  = $result['result'];
-                $this->logError($result['result'], __FILE__ . ', LINE #' . __LINE__);
+                wError::logError($result['result'], __FILE__ . ', LINE #' . __LINE__);
             }
         } else if ($result['status_code'] == 204) {
             $res = array("status"=>True, "result"=>$result);
 
         } else {
-            $this->logError('Unable to add folder to library', __FILE__ . ', LINE #' . __LINE__);
+            wError::logError('Unable to add folder to library', __FILE__ . ', LINE #' . __LINE__);
         }
         return $res;
     }
@@ -369,9 +351,9 @@ class Emby
             $res = array("status" => True, "result" => $result["result"]);
         } else if ($result['status_code'] == 400) {
             $res = array("status" => False, "result" => $result["result"]);
-            $this->logError($result["result"], __FILE__ . ', LINE #' . __LINE__);
+            wError::logError($result["result"], __FILE__ . ', LINE #' . __LINE__);
         } else {
-            $this->logError('Unable to add a new account for ' . $name, __FILE__ . ', LINE #' . __LINE__);
+            wError::logError('Unable to add a new account for ' . $name, __FILE__ . ', LINE #' . __LINE__);
         }
         return $res;
     }
@@ -385,7 +367,7 @@ class Emby
         if ($result['status_code'] == 204) {
             $res = array("status" => True, "result" => $result["result"]);
         } else {
-            $this->logError('Unable to edit user account policy settings for ' . $user_info['Id'], __FILE__ . ', LINE #' . __LINE__);
+            wError::logError('Unable to edit user account policy settings for ' . $user_info['Id'], __FILE__ . ', LINE #' . __LINE__);
         }
         return $res;
     }
@@ -409,7 +391,7 @@ class Emby
             $result = $this->edit_account_policy($user_info, $user_info['Policy']);
             $res = array("status" => $result["status"], "result" => $user_info);
         } else {
-            $this->logError('Unable to edit user account access settings for ' . $user_info['Id'], __FILE__ . ', LINE #' . __LINE__);
+            wError::logError('Unable to edit user account access settings for ' . $user_info['Id'], __FILE__ . ', LINE #' . __LINE__);
         }
         return $res;
     }
@@ -441,11 +423,11 @@ class Emby
                 $res = array("status" => True, "result" => $result["result"]);
             } else {
                 $res["error"] = "Unable to set new password";
-                $this->logError('Unable to set new password for ' . $user_info['Id'], __FILE__ . ', LINE #' . __LINE__);
+                wError::logError('Unable to set new password for ' . $user_info['Id'], __FILE__ . ', LINE #' . __LINE__);
             }
         } else {
             $res["error"] = "Unable to reset password";
-            $this->logError('Unable to reset password for ' . $user_info['Id'], __FILE__ . ', LINE #' . __LINE__);
+            wError::logError('Unable to reset password for ' . $user_info['Id'], __FILE__ . ', LINE #' . __LINE__);
         }
         return $res;
     }
