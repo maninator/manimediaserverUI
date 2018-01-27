@@ -80,7 +80,7 @@ class ApiController
         );
    
         if(App::Core()->enable_tax) {
-            $rules['address'] = array('required|string|min_len,3|max_len,80', Lang::$word->M_ADDRESS);
+            //$rules['address'] = array('required|string|min_len,3|max_len,80', Lang::$word->M_ADDRESS);
             $rules['city'] = array('required|string|min_len,2|max_len,80', Lang::$word->M_CITY);
             $rules['zip'] = array('required|string|min_len,3|max_len,30', Lang::$word->M_ZIP);
             $rules['state'] = array('required|string|min_len,2|max_len,80', Lang::$word->M_STATE);
